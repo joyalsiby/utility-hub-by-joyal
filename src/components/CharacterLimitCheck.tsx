@@ -17,9 +17,9 @@ const TextField = ({ limit, label, height = "h-32", placeholder }: TextFieldProp
   const percentage = Math.min((count / limit) * 100, 100);
 
   // Clean, functional colors
-  let progressColor = "bg-emerald-500";
-  let ringColor = "focus:ring-emerald-500/20";
-  let borderColor = "focus:border-emerald-500";
+  let progressColor = "bg-blue-600";
+  let ringColor = "focus:ring-blue-600/20";
+  let borderColor = "focus:border-blue-600";
 
   if (isExceeded) {
     progressColor = "bg-red-500";
@@ -77,7 +77,7 @@ const TextField = ({ limit, label, height = "h-32", placeholder }: TextFieldProp
       </div>
 
       {/* Progress Bar */}
-      <div className="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden mt-2">
+      <div className="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden mt-1">
         <motion.div
           className={`h-full ${progressColor} rounded-full`}
           initial={{ width: 0 }}

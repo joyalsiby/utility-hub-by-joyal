@@ -14,7 +14,7 @@ const Sidebar = () => {
   return (
     <div className="w-64 bg-white border-r border-slate-200 h-screen flex flex-col fixed left-0 top-0">
       <div className="p-6 border-b border-slate-100 flex items-center gap-3">
-        <div className="bg-indigo-600 p-2 rounded-lg">
+        <div className="bg-blue-600 p-2 rounded-lg">
           <LayoutGrid className="text-white w-5 h-5" />
         </div>
         <span className="font-semibold text-slate-800 text-lg">Utility Hub</span>
@@ -31,11 +31,11 @@ const Sidebar = () => {
               to={item.path}
               className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${
                 active 
-                  ? 'bg-indigo-50 text-indigo-700 font-medium' 
+                  ? 'bg-blue-50 text-blue-700 font-medium' 
                   : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
               }`}
             >
-              <Icon size={18} className={active ? 'text-indigo-600' : 'text-slate-400'} />
+              <Icon size={18} className={active ? 'text-blue-600' : 'text-slate-400'} />
               <span>{item.label}</span>
             </Link>
           );
