@@ -12,6 +12,13 @@ Utility Hub is designed to be a go-to application for various day-to-day digital
 A tool to help content creators and developers ensure their text fits within specific constraints.
 - Real-time character counting
 - Visual feedback
+- Custom limit support
+
+### 2. Image to Video Converter
+Convert static images into 2-second MP4 videos.
+- Supports JPG, PNG, WEBP, GIF
+- Client-side processing (privacy focused)
+- Maintains original resolution
 
 ## Tech Stack
 
@@ -38,6 +45,14 @@ A tool to help content creators and developers ensure their text fits within spe
    ```bash
    npm run build
    ```
+
+## Troubleshooting
+
+### GitHub Pages 404 Errors
+If you encounter 404 errors on refresh or direct navigation:
+1. Ensure your repository Settings -> Pages -> Build and deployment -> Source is set to **GitHub Actions**.
+2. The project uses `HashRouter` to support static hosting. URLs should look like `/#/character-limit`.
+3. A `404.html` file is included to redirect old paths to the hash format.
 
 ## Future Roadmap
 

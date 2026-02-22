@@ -6,6 +6,7 @@
 import { Routes, Route } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import CharacterLimitCheck from './components/CharacterLimitCheck';
+import ImageToVideo from './components/ImageToVideo';
 
 const Home = () => (
   <div className="flex flex-col items-center justify-center h-full text-center space-y-6">
@@ -38,6 +39,11 @@ export default function App() {
             <Route path="/character-limit" element={
               <div className="flex justify-center pt-12">
                 <CharacterLimitCheck />
+              </div>
+            } />
+            <Route path="/image-to-video" element={
+              <div className="flex justify-center pt-12">
+                <ImageToVideo />
               </div>
             } />
           </Routes>

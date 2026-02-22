@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Redirecting...</title>
+    <script>
+      // Redirects 404 paths to the HashRouter format
+      // e.g. /character-limit -> /#/character-limit
+      var path = window.location.pathname;
+      var search = window.location.search;
+      var hash = window.location.hash;
+      
+      // Only redirect if we're not already at the root
+      if (path !== '/') {
+        window.location.replace('/#' + path + search + hash);
+      }
+    </script>
+  </head>
+  <body>
+    <p>Redirecting...</p>
+  </body>
+</html>
