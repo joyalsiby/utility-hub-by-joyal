@@ -105,6 +105,18 @@ const TextField = ({ limit, label, height = "h-32", placeholder }: TextFieldProp
 };
 
 export default function CharacterLimitCheck() {
+  const [selectedOption, setSelectedOption] = useState('long');
+  const [customLimit, setCustomLimit] = useState(100);
+
+  const options = [
+    { id: 'long', label: 'Long Caption', limit: 2000, height: 'h-48', placeholder: 'Enter detailed text...' },
+    { id: 'medium', label: 'Medium Caption', limit: 500, height: 'h-32', placeholder: 'Enter summary...' },
+    { id: 'short', label: 'Short Caption', limit: 300, height: 'h-24', placeholder: 'Enter tags or keywords...' },
+    { id: 'custom', label: 'Custom', limit: customLimit, height: 'h-32', placeholder: `Enter text (limit: ${customLimit})...` },
+  ];
+
+  const currentOption = options.find(o => o.id === selectedOption) || options[0];
+
   return (
     <div className="w-full max-w-2xl space-y-8">
       <div className="text-center space-y-2">
@@ -116,30 +128,53 @@ export default function CharacterLimitCheck() {
         </p>
       </div>
 
-      <div className="bg-white shadow-sm border border-slate-200 rounded-xl p-6 sm:p-8 space-y-8">
+      <div className="bg-white shadow-sm border border-slate-200 rounded-xl p-6 sm:p-8 space-y-6">
+        {/* Tab Navigation */}
+        <div className="grid grid-cols-4 gap-1 p-1 bg-slate-100 rounded-xl">
+          {options.map((option) => (
+            <button
+              key={option.id}
+              onClick={() => setSelectedOption(option.id)}
+              className={`py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
+                selectedOption === option.id
+                  ? 'bg-white text-blue-600 shadow-sm'
+                  : 'text-slate-500 hover:text-slate-700 hover:bg-slate-200/50'
+              }`}
+            >
+              {option.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Custom Limit Input */}
+        <AnimatePresence>
+          {selectedOption === 'custom' && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="overflow-hidden"
+            >
+              <div className="flex items-center gap-4 justify-center pb-2">
+                <label className="text-sm font-medium text-slate-700 whitespace-nowrap">
+                  Set Limit:
+                </label>
+                <input
+                  type="number"
+                  value={customLimit}
+                  onChange={(e) => setCustomLimit(Math.max(1, parseInt(e.target.value) || 0))}
+                  className="w-24 px-3 py-1.5 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 transition-all text-slate-900"
+                />
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         <TextField
-          label="Long Caption"
-          limit={2000}
-          height="h-48"
-          placeholder="Enter detailed text..."
-        />
-
-        <div className="h-px bg-slate-100 w-full" />
-
-        <TextField
-          label="Medium Caption"
-          limit={500}
-          height="h-32"
-          placeholder="Enter summary..."
-        />
-
-        <div className="h-px bg-slate-100 w-full" />
-
-        <TextField
-          label="Short Caption"
-          limit={300}
-          height="h-24"
-          placeholder="Enter tags or keywords..."
+          label={selectedOption === 'custom' ? `Custom Length (${customLimit})` : currentOption.label}
+          limit={selectedOption === 'custom' ? customLimit : currentOption.limit}
+          height={currentOption.height}
+          placeholder={currentOption.placeholder}
         />
       </div>
     </div>
