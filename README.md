@@ -1,20 +1,44 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Utility Hub
 
-# Run and deploy your AI Studio app
+A modern, centralized collection of utility tools built with React, TypeScript, and Tailwind CSS.
 
-This contains everything you need to run your app locally.
+## Overview
 
-View your app in AI Studio: https://ai.studio/apps/7eca48f0-7a66-43d7-8cea-7a3b0373e094
+Utility Hub is designed to be a go-to application for various day-to-day digital tasks. It provides a clean, responsive interface to access different tools quickly.
 
-## Run Locally
+## Current Utilities
 
-**Prerequisites:**  Node.js
+### 1. Character Limit Checker
+A tool to help content creators and developers ensure their text fits within specific constraints.
+- Real-time character counting
+- Visual feedback
 
+## Tech Stack
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+- **Frontend Framework:** React 19
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS v4
+- **Build Tool:** Vite
+- **Routing:** React Router DOM
+- **Icons:** Lucide React
+
+## Getting Started
+
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+2. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+
+3. **Build for production:**
+   ```bash
+   npm run build
+   ```
+
+## Future Roadmap
+
+More utilities are planned for future updates to expand the capabilities of this hub.
