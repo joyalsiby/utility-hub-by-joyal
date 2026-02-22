@@ -20,6 +20,13 @@ Convert static images into 2-second MP4 videos.
 - Client-side processing (privacy focused)
 - Maintains original resolution
 
+### 3. QR Code Generator
+Create customizable QR codes for URLs, text, and more.
+- Custom colors (foreground/background)
+- Logo embedding support
+- High-resolution PNG download
+- Adjustable size and error correction
+
 ## Tech Stack
 
 - **Frontend Framework:** React 19

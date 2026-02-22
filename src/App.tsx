@@ -5,10 +5,11 @@
 
 import { useState } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
-import { Type, Video, Search, ArrowRight } from 'lucide-react';
+import { Type, Video, Search, ArrowRight, QrCode } from 'lucide-react';
 import Sidebar from './components/Sidebar';
 import CharacterLimitCheck from './components/CharacterLimitCheck';
 import ImageToVideo from './components/ImageToVideo';
+import QRCodeGenerator from './components/QRCodeGenerator';
 import { Logo } from './components/Logo';
 
 const utilities = [
@@ -27,6 +28,14 @@ const utilities = [
     path: '/image-to-video',
     icon: Video,
     color: 'bg-indigo-50 text-indigo-600',
+  },
+  {
+    id: 'qr-generator',
+    title: 'QR Code Generator',
+    description: 'Create customizable QR codes with colors, logos, and high resolution.',
+    path: '/qr-generator',
+    icon: QrCode,
+    color: 'bg-emerald-50 text-emerald-600',
   }
 ];
 
@@ -121,6 +130,11 @@ export default function App() {
             <Route path="/image-to-video" element={
               <div className="flex justify-center pt-12">
                 <ImageToVideo />
+              </div>
+            } />
+            <Route path="/qr-generator" element={
+              <div className="flex justify-center pt-12">
+                <QRCodeGenerator />
               </div>
             } />
           </Routes>
