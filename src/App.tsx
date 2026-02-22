@@ -3,29 +3,106 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Routes, Route } from 'react-router-dom';
+import { useState } from 'react';
+import { Routes, Route, Link } from 'react-router-dom';
+import { Type, Video, Search, ArrowRight } from 'lucide-react';
 import Sidebar from './components/Sidebar';
 import CharacterLimitCheck from './components/CharacterLimitCheck';
 import ImageToVideo from './components/ImageToVideo';
+import { Logo } from './components/Logo';
 
-const Home = () => (
-  <div className="flex flex-col items-center justify-center h-full text-center space-y-6">
-    <div className="bg-blue-50 p-6 rounded-full">
-      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-600">
-        <rect width="7" height="9" x="3" y="3" rx="1" />
-        <rect width="7" height="5" x="14" y="3" rx="1" />
-        <rect width="7" height="9" x="14" y="12" rx="1" />
-        <rect width="7" height="5" x="3" y="16" rx="1" />
-      </svg>
+const utilities = [
+  {
+    id: 'character-limit',
+    title: 'Character Limit Check',
+    description: 'Validate text length with custom limits and visual feedback.',
+    path: '/character-limit',
+    icon: Type,
+    color: 'bg-blue-50 text-blue-600',
+  },
+  {
+    id: 'image-to-video',
+    title: 'Image to Video',
+    description: 'Convert static images into 2-second MP4 videos instantly.',
+    path: '/image-to-video',
+    icon: Video,
+    color: 'bg-indigo-50 text-indigo-600',
+  }
+];
+
+const Home = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const filteredUtilities = utilities.filter(util => 
+    util.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    util.description.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  return (
+    <div className="space-y-8 pt-6">
+      <div className="space-y-4">
+        <div className="flex items-center gap-3">
+          <div className="bg-blue-600 p-2 rounded-lg">
+            <Logo className="text-white w-6 h-6" />
+          </div>
+          <h1 className="text-3xl font-bold text-slate-900">Utility Hub</h1>
+        </div>
+        <p className="text-slate-500 max-w-2xl">
+          A collection of simple, powerful tools to help with your daily tasks.
+          Select a utility below to get started.
+        </p>
+      </div>
+
+      {/* Search Bar */}
+      <div className="relative max-w-md">
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
+        <input
+          type="text"
+          placeholder="Search utilities..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="w-full pl-10 pr-4 py-3 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 transition-all text-slate-900 placeholder:text-slate-400"
+        />
+      </div>
+
+      {/* Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {filteredUtilities.map((util) => {
+          const Icon = util.icon;
+          return (
+            <Link 
+              key={util.id} 
+              to={util.path}
+              className="group bg-white border border-slate-200 rounded-2xl p-6 hover:shadow-md hover:border-blue-200 transition-all duration-200 flex flex-col h-full"
+            >
+              <div className="flex items-start justify-between mb-4">
+                <div className={`p-3 rounded-xl ${util.color} group-hover:scale-110 transition-transform duration-200`}>
+                  <Icon size={24} />
+                </div>
+                <div className="text-slate-300 group-hover:text-blue-500 transition-colors">
+                  <ArrowRight size={20} />
+                </div>
+              </div>
+              
+              <h3 className="text-lg font-semibold text-slate-900 mb-2 group-hover:text-blue-700 transition-colors">
+                {util.title}
+              </h3>
+              <p className="text-slate-500 text-sm leading-relaxed">
+                {util.description}
+              </p>
+            </Link>
+          );
+        })}
+
+        {filteredUtilities.length === 0 && (
+          <div className="col-span-full text-center py-12 text-slate-500 bg-slate-50 rounded-2xl border border-dashed border-slate-200">
+            <p>No utilities found matching "{searchTerm}"</p>
+          </div>
+        )}
+      </div>
     </div>
-    <div className="space-y-2">
-      <h1 className="text-3xl font-bold text-slate-900">Welcome to Utility Hub</h1>
-      <p className="text-slate-500 max-w-md mx-auto">
-        Select a utility from the sidebar to get started. More tools coming soon.
-      </p>
-    </div>
-  </div>
-);
+  );
+};
 
 export default function App() {
   return (

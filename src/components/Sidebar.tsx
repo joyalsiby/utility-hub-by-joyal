@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutGrid, Type, Home, Video } from 'lucide-react';
+import { Type, Home, Video } from 'lucide-react';
+import { Logo } from './Logo';
 
 const Sidebar = () => {
   const location = useLocation();
@@ -16,7 +17,7 @@ const Sidebar = () => {
     <div className="w-64 bg-white border-r border-slate-200 h-screen flex flex-col fixed left-0 top-0">
       <div className="p-6 border-b border-slate-100 flex items-center gap-3">
         <div className="bg-blue-600 p-2 rounded-lg">
-          <LayoutGrid className="text-white w-5 h-5" />
+          <Logo className="text-white w-5 h-5" />
         </div>
         <span className="font-semibold text-slate-800 text-lg">Utility Hub</span>
       </div>
