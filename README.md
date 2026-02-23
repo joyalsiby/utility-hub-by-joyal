@@ -34,6 +34,12 @@ Generate tints and shades from a single base color.
 - One-click copy for Hex, RGB, HSL
 - Visual palette display
 
+### 5. YouTube Thumbnail Downloader
+View and download thumbnails from any YouTube video.
+- Supports multiple resolutions (HD, SD, HQ, MQ)
+- One-click download
+- Direct link access
+
 ## Tech Stack
 
 - **Frontend Framework:** React 19

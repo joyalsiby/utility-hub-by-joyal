@@ -1,5 +1,5 @@
 {
   "name": "Utility Hub by Joyal V2",
-  "description": "A collection of utility tools including a Character Limit Checker, Image to Video Converter, QR Code Generator, and Color Shades Generator.",
+  "description": "A collection of utility tools including a Character Limit Checker, Image to Video Converter, QR Code Generator, Color Shades Generator, and YouTube Thumbnail Downloader.",
   "requestFramePermissions": []
 }

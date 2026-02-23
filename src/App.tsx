@@ -5,12 +5,13 @@
 
 import { useState } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
-import { Type, Video, Search, ArrowRight, QrCode, Palette } from 'lucide-react';
+import { Type, Video, Search, ArrowRight, QrCode, Palette, Image as ImageIcon } from 'lucide-react';
 import Sidebar from './components/Sidebar';
 import CharacterLimitCheck from './components/CharacterLimitCheck';
 import ImageToVideo from './components/ImageToVideo';
 import QRCodeGenerator from './components/QRCodeGenerator';
 import ColorShadesGenerator from './components/ColorShadesGenerator';
+import YouTubeThumbnailDownloader from './components/YouTubeThumbnailDownloader';
 import { Logo } from './components/Logo';
 
 const utilities = [
@@ -45,6 +46,14 @@ const utilities = [
     path: '/color-shades',
     icon: Palette,
     color: 'bg-rose-50 text-rose-600',
+  },
+  {
+    id: 'youtube-thumbnail',
+    title: 'YouTube Thumbnail Downloader',
+    description: 'View and download thumbnails from any YouTube video in multiple qualities.',
+    path: '/youtube-thumbnail',
+    icon: ImageIcon,
+    color: 'bg-red-50 text-red-600',
   }
 ];
 
@@ -123,11 +132,20 @@ const Home = () => {
 };
 
 export default function App() {
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+
   return (
     <div className="flex min-h-screen bg-slate-50 font-sans text-slate-900">
-      <Sidebar />
+      <Sidebar 
+        isCollapsed={isSidebarCollapsed} 
+        toggleSidebar={() => setIsSidebarCollapsed(!isSidebarCollapsed)} 
+      />
       
-      <main className="flex-1 ml-64 p-8 overflow-y-auto h-screen">
+      <main 
+        className={`flex-1 p-8 overflow-y-auto h-screen transition-all duration-300 ${
+          isSidebarCollapsed ? 'ml-20' : 'ml-64'
+        }`}
+      >
         <div className="max-w-5xl mx-auto h-full">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -149,6 +167,11 @@ export default function App() {
             <Route path="/color-shades" element={
               <div className="flex justify-center pt-12">
                 <ColorShadesGenerator />
+              </div>
+            } />
+            <Route path="/youtube-thumbnail" element={
+              <div className="flex justify-center pt-12">
+                <YouTubeThumbnailDownloader />
               </div>
             } />
           </Routes>
