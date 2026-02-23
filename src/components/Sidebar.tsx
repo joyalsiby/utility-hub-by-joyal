@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Type, Home, Video, QrCode, Palette, Image as ImageIcon, ChevronsLeft, ChevronsRight, X } from 'lucide-react';
+import { Type, Home, Video, QrCode, Palette, Image as ImageIcon, ChevronsLeft, ChevronsRight, X, Moon, Sun } from 'lucide-react';
 import { Logo } from './Logo';
+import { useTheme } from '../context/ThemeContext';
 
 interface SidebarProps {
   isCollapsed: boolean;
@@ -11,6 +12,7 @@ interface SidebarProps {
 
 const Sidebar = ({ isCollapsed, toggleSidebar, isMobileOpen, closeMobileSidebar }: SidebarProps) => {
   const location = useLocation();
+  const { theme, toggleTheme } = useTheme();
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -34,21 +36,25 @@ const Sidebar = ({ isCollapsed, toggleSidebar, isMobileOpen, closeMobileSidebar 
       )}
 
       <div 
-        className={`bg-white border-r border-slate-200 h-screen flex flex-col fixed left-0 top-0 transition-all duration-300 ease-in-out z-50 
+        className={`bg-white dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 h-screen flex flex-col fixed left-0 top-0 transition-all duration-300 ease-in-out z-50 
           ${isMobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
           ${isCollapsed ? 'md:w-20' : 'md:w-64'}
           w-64
         `}
       >
-        <div className={`h-[70px] border-b border-slate-100 flex items-center transition-all duration-300 
+        <div className={`h-[70px] border-b border-slate-100 dark:border-slate-700 flex items-center transition-all duration-300 
           ${isCollapsed ? 'md:justify-center md:px-2' : 'md:px-6'}
           px-6 justify-between
         `}>
-          <div className="flex items-center gap-3 overflow-hidden">
+          <div 
+            className={`flex items-center gap-3 overflow-hidden ${isCollapsed ? 'cursor-pointer' : ''}`}
+            onClick={isCollapsed ? toggleSidebar : undefined}
+            title={isCollapsed ? "Click to expand" : undefined}
+          >
             <div className="bg-blue-600 p-2 rounded-lg flex-shrink-0">
               <Logo className="text-white w-5 h-5" />
             </div>
-            <span className={`font-semibold text-slate-800 text-lg whitespace-nowrap transition-all duration-300 
+            <span className={`font-semibold text-slate-800 dark:text-white text-lg whitespace-nowrap transition-all duration-300 
               ${isCollapsed ? 'md:w-0 md:opacity-0' : 'md:w-auto md:opacity-100'}
             `}>
               Utility Hub
@@ -58,7 +64,7 @@ const Sidebar = ({ isCollapsed, toggleSidebar, isMobileOpen, closeMobileSidebar 
           {/* Mobile Close Button */}
           <button 
             onClick={closeMobileSidebar}
-            className="md:hidden text-slate-400 hover:text-slate-600"
+            className="md:hidden text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
           >
             <X size={24} />
           </button>
@@ -76,14 +82,14 @@ const Sidebar = ({ isCollapsed, toggleSidebar, isMobileOpen, closeMobileSidebar 
                 onClick={() => closeMobileSidebar()}
                 className={`flex items-center px-4 py-3 rounded-lg transition-all duration-200 group 
                   ${active 
-                    ? 'bg-blue-50 text-blue-700 font-medium' 
-                    : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                    ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 font-medium' 
+                    : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-slate-900 dark:hover:text-white'
                   } 
                   ${isCollapsed ? 'md:justify-center md:px-2' : ''}
                 `}
                 title={isCollapsed ? item.label : undefined}
               >
-                <Icon size={18} className={`flex-shrink-0 transition-colors ${active ? 'text-blue-600' : 'text-slate-400'}`} />
+                <Icon size={18} className={`flex-shrink-0 transition-colors ${active ? 'text-blue-600 dark:text-blue-400' : 'text-slate-400 dark:text-slate-500'}`} />
                 <span className={`whitespace-nowrap overflow-hidden transition-all duration-300 
                   ${isCollapsed ? 'md:w-0 md:opacity-0' : 'md:w-auto md:opacity-100 ml-3'}
                   ml-3
@@ -95,15 +101,35 @@ const Sidebar = ({ isCollapsed, toggleSidebar, isMobileOpen, closeMobileSidebar 
           })}
         </nav>
 
-        <div className="p-4 border-t border-slate-100 flex flex-col gap-4 hidden md:flex">
+        <div className="p-4 border-t border-slate-100 dark:border-slate-700 flex flex-col gap-4">
           <button
-            onClick={toggleSidebar}
-            className="flex items-center justify-center w-full p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-50 rounded-lg transition-colors"
+            onClick={toggleTheme}
+            className={`flex items-center gap-3 px-4 py-2 rounded-lg transition-colors text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-slate-900 dark:hover:text-white
+              ${isCollapsed ? 'justify-center px-2' : ''}
+            `}
+            title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
           >
-            {isCollapsed ? <ChevronsRight size={20} /> : <ChevronsLeft size={20} />}
+            {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+            <span className={`whitespace-nowrap overflow-hidden transition-all duration-300 
+              ${isCollapsed ? 'md:w-0 md:opacity-0' : 'md:w-auto md:opacity-100'}
+            `}>
+              {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
+            </span>
           </button>
+
+          <div className="hidden md:block h-px bg-slate-200 dark:bg-slate-700 w-full" />
+
           {!isCollapsed && (
-            <div className="text-xs text-slate-400 text-center transition-opacity duration-300">
+            <button
+              onClick={toggleSidebar}
+              className="hidden md:flex items-center justify-center w-full p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 rounded-lg transition-colors"
+              title="Collapse sidebar"
+            >
+              <ChevronsLeft size={20} />
+            </button>
+          )}
+          {!isCollapsed && (
+            <div className="text-xs text-slate-400 dark:text-slate-500 text-center transition-opacity duration-300 hidden md:block">
               v1.0.0
             </div>
           )}

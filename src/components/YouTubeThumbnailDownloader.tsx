@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Search, Download, ExternalLink, Image as ImageIcon, AlertCircle } from 'lucide-react';
 
 export default function YouTubeThumbnailDownloader() {
@@ -60,18 +60,18 @@ export default function YouTubeThumbnailDownloader() {
   return (
     <div className="w-full max-w-4xl space-y-8">
       <div className="text-center space-y-2">
-        <h1 className="text-2xl font-semibold text-slate-900 tracking-tight">
+        <h1 className="text-2xl font-semibold text-slate-900 dark:text-white tracking-tight">
           YouTube Thumbnail Downloader
         </h1>
-        <p className="text-slate-500 text-sm">
+        <p className="text-slate-500 dark:text-slate-400 text-sm">
           View and download thumbnails from any YouTube video in multiple qualities
         </p>
       </div>
 
-      <div className="bg-white shadow-sm border border-slate-200 rounded-xl p-6 sm:p-8 space-y-8">
+      <div className="bg-white dark:bg-slate-800 shadow-sm border border-slate-200 dark:border-slate-700 rounded-xl p-6 sm:p-8 space-y-8">
         {/* Input Section */}
         <div className="space-y-2">
-          <label className="text-xs font-medium text-slate-500 uppercase tracking-wide">Video URL</label>
+          <label className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">Video URL</label>
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
             <input
@@ -79,11 +79,11 @@ export default function YouTubeThumbnailDownloader() {
               value={url}
               onChange={handleInputChange}
               placeholder="https://www.youtube.com/watch?v=..."
-              className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 transition-all text-slate-900 placeholder:text-slate-400"
+              className="w-full pl-10 pr-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600/20 dark:focus:ring-blue-500/20 focus:border-blue-600 dark:focus:border-blue-500 transition-all text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500"
             />
           </div>
           {url && !videoId && (
-            <div className="flex items-center gap-2 text-amber-600 text-sm mt-2">
+            <div className="flex items-center gap-2 text-amber-600 dark:text-amber-400 text-sm mt-2">
               <AlertCircle size={16} />
               <span>Invalid YouTube URL</span>
             </div>
@@ -91,7 +91,7 @@ export default function YouTubeThumbnailDownloader() {
         </div>
 
         {/* Thumbnails Grid */}
-        {videoId && (
+        {videoId ? (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {thumbnails.map((thumb) => {
               const imageUrl = `https://img.youtube.com/vi/${videoId}/${thumb.quality}.jpg`;
@@ -99,27 +99,30 @@ export default function YouTubeThumbnailDownloader() {
               return (
                 <div key={thumb.quality} className="space-y-3 group">
                   <div className="flex items-center justify-between">
-                    <span className="font-medium text-slate-900 text-sm">{thumb.label}</span>
-                    <span className="text-xs text-slate-500 font-mono">{thumb.width}x{thumb.height}</span>
+                    <span className="font-medium text-slate-900 dark:text-white text-sm">{thumb.label}</span>
+                    <span className="text-xs text-slate-500 dark:text-slate-400 font-mono">{thumb.width}x{thumb.height}</span>
                   </div>
                   
-                  <div className="relative aspect-video bg-slate-100 rounded-lg overflow-hidden border border-slate-200 shadow-sm group-hover:shadow-md transition-all">
+                  <div className="relative aspect-video bg-slate-100 dark:bg-slate-900 rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm group-hover:shadow-md transition-all">
                     <img
                       src={imageUrl}
                       alt={thumb.label}
                       className="w-full h-full object-cover"
                       onError={(e) => {
                         // Hide if image doesn't exist (some videos don't have maxres)
-                        (e.target as HTMLImageElement).style.display = 'none';
-                        (e.target as HTMLImageElement).parentElement!.innerHTML = '<div class="flex items-center justify-center h-full text-slate-400 text-sm">Not Available</div>';
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = 'none';
+                        if (target.parentElement) {
+                           target.parentElement.innerHTML = '<div class="flex items-center justify-center h-full text-slate-400 dark:text-slate-500 text-sm">Not Available</div>';
+                        }
                       }}
                     />
                     
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 dark:group-hover:bg-black/30 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
                       <div className="flex gap-2">
                          <button
                           onClick={() => handleDownload(imageUrl, thumb.quality)}
-                          className="p-2 bg-white text-slate-900 rounded-lg shadow-lg hover:bg-blue-50 hover:text-blue-600 transition-colors transform translate-y-2 group-hover:translate-y-0 duration-200"
+                          className="p-2 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg shadow-lg hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors transform translate-y-2 group-hover:translate-y-0 duration-200"
                           title="Download"
                         >
                           <Download size={20} />
@@ -128,7 +131,7 @@ export default function YouTubeThumbnailDownloader() {
                           href={imageUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-2 bg-white text-slate-900 rounded-lg shadow-lg hover:bg-blue-50 hover:text-blue-600 transition-colors transform translate-y-2 group-hover:translate-y-0 duration-200 delay-75"
+                          className="p-2 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg shadow-lg hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors transform translate-y-2 group-hover:translate-y-0 duration-200 delay-75"
                           title="Open in New Tab"
                         >
                           <ExternalLink size={20} />
@@ -140,14 +143,12 @@ export default function YouTubeThumbnailDownloader() {
               );
             })}
           </div>
-        )}
-
-        {!videoId && (
-          <div className="text-center py-12 border-2 border-dashed border-slate-100 rounded-xl bg-slate-50/50">
-            <div className="bg-slate-100 p-4 rounded-full inline-flex mb-4">
-              <ImageIcon className="w-8 h-8 text-slate-300" />
+        ) : (
+          <div className="text-center py-12 border-2 border-dashed border-slate-100 dark:border-slate-700 rounded-xl bg-slate-50/50 dark:bg-slate-800/50">
+            <div className="bg-slate-100 dark:bg-slate-700 p-4 rounded-full inline-flex mb-4">
+              <ImageIcon className="w-8 h-8 text-slate-300 dark:text-slate-500" />
             </div>
-            <p className="text-slate-500 text-sm">Enter a YouTube URL to view thumbnails</p>
+            <p className="text-slate-500 dark:text-slate-400 text-sm">Enter a YouTube URL to view thumbnails</p>
           </div>
         )}
       </div>
