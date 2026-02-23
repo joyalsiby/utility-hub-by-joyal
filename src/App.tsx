@@ -5,7 +5,7 @@
 
 import { useState } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
-import { Type, Video, Search, ArrowRight, QrCode, Palette, Image as ImageIcon } from 'lucide-react';
+import { Type, Video, Search, ArrowRight, QrCode, Palette, Image as ImageIcon, Menu } from 'lucide-react';
 import Sidebar from './components/Sidebar';
 import CharacterLimitCheck from './components/CharacterLimitCheck';
 import ImageToVideo from './components/ImageToVideo';
@@ -72,9 +72,9 @@ const Home = () => {
           <div className="bg-blue-600 p-2 rounded-lg">
             <Logo className="text-white w-6 h-6" />
           </div>
-          <h1 className="text-3xl font-bold text-slate-900">Utility Hub</h1>
+          <h1 className="text-2xl md:text-3xl font-bold text-slate-900">Utility Hub</h1>
         </div>
-        <p className="text-slate-500 max-w-2xl">
+        <p className="text-slate-500 max-w-2xl text-sm md:text-base">
           A collection of simple, powerful tools to help with your daily tasks.
           Select a utility below to get started.
         </p>
@@ -133,44 +133,63 @@ const Home = () => {
 
 export default function App() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <div className="flex min-h-screen bg-slate-50 font-sans text-slate-900">
+      {/* Mobile Header */}
+      <div className="md:hidden fixed top-0 left-0 right-0 h-16 bg-white border-b border-slate-200 z-40 flex items-center justify-between px-4">
+        <div className="flex items-center gap-3">
+          <div className="bg-blue-600 p-2 rounded-lg">
+            <Logo className="text-white w-5 h-5" />
+          </div>
+          <span className="font-semibold text-slate-800 text-lg">Utility Hub</span>
+        </div>
+        <button 
+          onClick={() => setIsMobileMenuOpen(true)} 
+          className="p-2 text-slate-600 hover:bg-slate-50 rounded-lg"
+        >
+          <Menu size={24} />
+        </button>
+      </div>
+
       <Sidebar 
         isCollapsed={isSidebarCollapsed} 
         toggleSidebar={() => setIsSidebarCollapsed(!isSidebarCollapsed)} 
+        isMobileOpen={isMobileMenuOpen}
+        closeMobileSidebar={() => setIsMobileMenuOpen(false)}
       />
       
       <main 
-        className={`flex-1 p-8 overflow-y-auto h-screen transition-all duration-300 ${
-          isSidebarCollapsed ? 'ml-20' : 'ml-64'
+        className={`flex-1 p-4 md:p-8 overflow-y-auto h-screen pt-20 md:pt-8 transition-all duration-300 ${
+          isSidebarCollapsed ? 'md:ml-20' : 'md:ml-64'
         }`}
       >
         <div className="max-w-5xl mx-auto h-full">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/character-limit" element={
-              <div className="flex justify-center pt-12">
+              <div className="flex justify-center pt-4 md:pt-12">
                 <CharacterLimitCheck />
               </div>
             } />
             <Route path="/image-to-video" element={
-              <div className="flex justify-center pt-12">
+              <div className="flex justify-center pt-4 md:pt-12">
                 <ImageToVideo />
               </div>
             } />
             <Route path="/qr-generator" element={
-              <div className="flex justify-center pt-12">
+              <div className="flex justify-center pt-4 md:pt-12">
                 <QRCodeGenerator />
               </div>
             } />
             <Route path="/color-shades" element={
-              <div className="flex justify-center pt-12">
+              <div className="flex justify-center pt-4 md:pt-12">
                 <ColorShadesGenerator />
               </div>
             } />
             <Route path="/youtube-thumbnail" element={
-              <div className="flex justify-center pt-12">
+              <div className="flex justify-center pt-4 md:pt-12">
                 <YouTubeThumbnailDownloader />
               </div>
             } />
