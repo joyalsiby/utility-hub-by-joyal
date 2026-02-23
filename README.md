@@ -27,6 +27,13 @@ Create customizable QR codes for URLs, text, and more.
 - High-resolution PNG download
 - Adjustable size and error correction
 
+### 4. Color Shades Generator
+Generate tints and shades from a single base color.
+- Interactive color picker
+- Adjustable step percentage and count
+- One-click copy for Hex, RGB, HSL
+- Visual palette display
+
 ## Tech Stack
 
 - **Frontend Framework:** React 19

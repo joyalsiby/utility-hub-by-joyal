@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Type, Home, Video, QrCode } from 'lucide-react';
+import { Type, Home, Video, QrCode, Palette } from 'lucide-react';
 import { Logo } from './Logo';
 
 const Sidebar = () => {
@@ -12,6 +12,7 @@ const Sidebar = () => {
     { path: '/character-limit', label: 'Character Limit', icon: Type },
     { path: '/image-to-video', label: 'Image to Video', icon: Video },
     { path: '/qr-generator', label: 'QR Generator', icon: QrCode },
+    { path: '/color-shades', label: 'Color Shades', icon: Palette },
   ];
 
   return (

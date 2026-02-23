@@ -5,11 +5,12 @@
 
 import { useState } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
-import { Type, Video, Search, ArrowRight, QrCode } from 'lucide-react';
+import { Type, Video, Search, ArrowRight, QrCode, Palette } from 'lucide-react';
 import Sidebar from './components/Sidebar';
 import CharacterLimitCheck from './components/CharacterLimitCheck';
 import ImageToVideo from './components/ImageToVideo';
 import QRCodeGenerator from './components/QRCodeGenerator';
+import ColorShadesGenerator from './components/ColorShadesGenerator';
 import { Logo } from './components/Logo';
 
 const utilities = [
@@ -36,6 +37,14 @@ const utilities = [
     path: '/qr-generator',
     icon: QrCode,
     color: 'bg-emerald-50 text-emerald-600',
+  },
+  {
+    id: 'color-shades',
+    title: 'Color Shades Generator',
+    description: 'Generate tints and shades from a single base color with copy support.',
+    path: '/color-shades',
+    icon: Palette,
+    color: 'bg-rose-50 text-rose-600',
   }
 ];
 
@@ -135,6 +144,11 @@ export default function App() {
             <Route path="/qr-generator" element={
               <div className="flex justify-center pt-12">
                 <QRCodeGenerator />
+              </div>
+            } />
+            <Route path="/color-shades" element={
+              <div className="flex justify-center pt-12">
+                <ColorShadesGenerator />
               </div>
             } />
           </Routes>
