@@ -34,11 +34,11 @@ const TextField = ({ limit, label, height = "h-32", placeholder }: TextFieldProp
   return (
     <div className="flex flex-col gap-2 w-full">
       <div className="flex justify-between items-center">
-        <label className="text-sm font-medium text-slate-700 dark:text-slate-300">
+        <label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
           {label}
         </label>
         <span className={`text-xs font-medium transition-colors ${
-          isExceeded ? 'text-red-600 dark:text-red-400' : 'text-slate-400 dark:text-slate-500'
+          isExceeded ? 'text-red-600 dark:text-red-400' : 'text-zinc-400 dark:text-zinc-500'
         }`}>
           {count} / {limit}
         </span>
@@ -46,11 +46,11 @@ const TextField = ({ limit, label, height = "h-32", placeholder }: TextFieldProp
 
       <div className="relative group">
         <textarea
-          className={`w-full ${height} p-3 pb-8 text-slate-900 dark:text-white bg-white dark:bg-slate-900 border rounded-lg resize-none
+          className={`w-full ${height} p-3 pb-8 text-zinc-900 dark:text-white bg-white dark:bg-zinc-900 border rounded-lg resize-none
             transition-all duration-200 ease-in-out outline-none
-            ${isExceeded ? 'border-red-300 dark:border-red-800' : 'border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600'}
+            ${isExceeded ? 'border-red-300 dark:border-red-800' : 'border-zinc-200 dark:border-zinc-700 hover:border-zinc-300 dark:hover:border-zinc-600'}
             ${isFocused ? `ring-4 ${ringColor} ${borderColor}` : ''}
-            placeholder:text-slate-400 dark:placeholder:text-slate-600 text-sm leading-relaxed`}
+            placeholder:text-zinc-400 dark:placeholder:text-zinc-600 text-sm leading-relaxed`}
           value={text}
           onChange={(e) => setText(e.target.value)}
           onFocus={() => setIsFocused(true)}
@@ -67,7 +67,7 @@ const TextField = ({ limit, label, height = "h-32", placeholder }: TextFieldProp
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.8 }}
               onClick={() => setText('')}
-              className="absolute top-3 right-3 p-1 text-slate-400 hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors"
+              className="absolute top-3 right-3 p-1 text-zinc-400 hover:text-zinc-600 dark:text-zinc-500 dark:hover:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-full transition-colors"
               aria-label="Clear text"
             >
               <X size={14} />
@@ -77,7 +77,7 @@ const TextField = ({ limit, label, height = "h-32", placeholder }: TextFieldProp
       </div>
 
       {/* Progress Bar */}
-      <div className="w-full h-1.5 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden mt-1">
+      <div className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-700 rounded-full overflow-hidden mt-1">
         <motion.div
           className={`h-full ${progressColor} rounded-full`}
           initial={{ width: 0 }}
@@ -120,25 +120,25 @@ export default function CharacterLimitCheck() {
   return (
     <div className="w-full max-w-2xl space-y-8">
       <div className="text-center space-y-2">
-        <h1 className="text-2xl font-semibold text-slate-900 dark:text-white tracking-tight">
+        <h1 className="text-2xl font-semibold text-zinc-900 dark:text-white tracking-tight">
           Character Limit Check
         </h1>
-        <p className="text-slate-500 dark:text-slate-400 text-sm">
+        <p className="text-zinc-500 dark:text-zinc-400 text-sm">
           Simple text validation tool
         </p>
       </div>
 
-      <div className="bg-white dark:bg-slate-800 shadow-sm border border-slate-200 dark:border-slate-700 rounded-xl p-6 sm:p-8 space-y-6">
+      <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-6 sm:p-8 space-y-6 shadow-sm">
         {/* Tab Navigation */}
-        <div className="grid grid-cols-4 gap-1 p-1 bg-slate-100 dark:bg-slate-700/50 rounded-xl">
+        <div className="grid grid-cols-4 gap-1 p-1 bg-zinc-100 dark:bg-zinc-800 rounded-xl">
           {options.map((option) => (
             <button
               key={option.id}
               onClick={() => setSelectedOption(option.id)}
               className={`py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
                 selectedOption === option.id
-                  ? 'bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 shadow-sm'
-                  : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-200/50 dark:hover:bg-slate-600/50'
+                  ? 'bg-white dark:bg-zinc-700 text-blue-600 dark:text-blue-400 shadow-sm'
+                  : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 hover:bg-zinc-200/50 dark:hover:bg-zinc-700/50'
               }`}
             >
               {option.label}
@@ -156,14 +156,14 @@ export default function CharacterLimitCheck() {
               className="overflow-hidden"
             >
               <div className="flex items-center gap-4 justify-center pb-2">
-                <label className="text-sm font-medium text-slate-700 dark:text-slate-300 whitespace-nowrap">
+                <label className="text-sm font-medium text-zinc-700 dark:text-zinc-300 whitespace-nowrap">
                   Set Limit:
                 </label>
                 <input
                   type="number"
                   value={customLimit}
                   onChange={(e) => setCustomLimit(Math.max(1, parseInt(e.target.value) || 0))}
-                  className="w-24 px-3 py-1.5 text-sm border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600/20 dark:focus:ring-blue-500/20 focus:border-blue-600 dark:focus:border-blue-500 transition-all text-slate-900 dark:text-white"
+                  className="w-24 px-3 py-1.5 text-sm border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600/20 dark:focus:ring-blue-500/20 focus:border-blue-600 dark:focus:border-blue-500 transition-all text-zinc-900 dark:text-white"
                 />
               </div>
             </motion.div>

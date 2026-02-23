@@ -60,26 +60,26 @@ export default function YouTubeThumbnailDownloader() {
   return (
     <div className="w-full max-w-4xl space-y-8">
       <div className="text-center space-y-2">
-        <h1 className="text-2xl font-semibold text-slate-900 dark:text-white tracking-tight">
+        <h1 className="text-2xl font-semibold text-zinc-900 dark:text-white tracking-tight">
           YouTube Thumbnail Downloader
         </h1>
-        <p className="text-slate-500 dark:text-slate-400 text-sm">
+        <p className="text-zinc-500 dark:text-zinc-400 text-sm">
           View and download thumbnails from any YouTube video in multiple qualities
         </p>
       </div>
 
-      <div className="bg-white dark:bg-slate-800 shadow-sm border border-slate-200 dark:border-slate-700 rounded-xl p-6 sm:p-8 space-y-8">
+      <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-6 sm:p-8 space-y-8 shadow-sm">
         {/* Input Section */}
         <div className="space-y-2">
-          <label className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">Video URL</label>
+          <label className="text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wide">Video URL</label>
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 w-5 h-5" />
             <input
               type="text"
               value={url}
               onChange={handleInputChange}
               placeholder="https://www.youtube.com/watch?v=..."
-              className="w-full pl-10 pr-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600/20 dark:focus:ring-blue-500/20 focus:border-blue-600 dark:focus:border-blue-500 transition-all text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500"
+              className="w-full pl-10 pr-4 py-3 bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600/20 dark:focus:ring-blue-500/20 focus:border-blue-600 dark:focus:border-blue-500 transition-all text-zinc-900 dark:text-white placeholder:text-zinc-400 dark:placeholder:text-zinc-500"
             />
           </div>
           {url && !videoId && (
@@ -99,11 +99,11 @@ export default function YouTubeThumbnailDownloader() {
               return (
                 <div key={thumb.quality} className="space-y-3 group">
                   <div className="flex items-center justify-between">
-                    <span className="font-medium text-slate-900 dark:text-white text-sm">{thumb.label}</span>
-                    <span className="text-xs text-slate-500 dark:text-slate-400 font-mono">{thumb.width}x{thumb.height}</span>
+                    <span className="font-medium text-zinc-900 dark:text-white text-sm">{thumb.label}</span>
+                    <span className="text-xs text-zinc-500 dark:text-zinc-400 font-mono">{thumb.width}x{thumb.height}</span>
                   </div>
                   
-                  <div className="relative aspect-video bg-slate-100 dark:bg-slate-900 rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm group-hover:shadow-md transition-all">
+                  <div className="relative aspect-video bg-zinc-100 dark:bg-zinc-950 rounded-lg overflow-hidden border border-zinc-200 dark:border-zinc-800 shadow-sm group-hover:shadow-md transition-all">
                     <img
                       src={imageUrl}
                       alt={thumb.label}
@@ -113,7 +113,7 @@ export default function YouTubeThumbnailDownloader() {
                         const target = e.target as HTMLImageElement;
                         target.style.display = 'none';
                         if (target.parentElement) {
-                           target.parentElement.innerHTML = '<div class="flex items-center justify-center h-full text-slate-400 dark:text-slate-500 text-sm">Not Available</div>';
+                           target.parentElement.innerHTML = '<div class="flex items-center justify-center h-full text-zinc-400 dark:text-zinc-500 text-sm">Not Available</div>';
                         }
                       }}
                     />
@@ -122,7 +122,7 @@ export default function YouTubeThumbnailDownloader() {
                       <div className="flex gap-2">
                          <button
                           onClick={() => handleDownload(imageUrl, thumb.quality)}
-                          className="p-2 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg shadow-lg hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors transform translate-y-2 group-hover:translate-y-0 duration-200"
+                          className="p-2 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white rounded-lg shadow-lg hover:bg-blue-50 dark:hover:bg-zinc-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors transform translate-y-2 group-hover:translate-y-0 duration-200"
                           title="Download"
                         >
                           <Download size={20} />
@@ -131,7 +131,7 @@ export default function YouTubeThumbnailDownloader() {
                           href={imageUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-2 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg shadow-lg hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors transform translate-y-2 group-hover:translate-y-0 duration-200 delay-75"
+                          className="p-2 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white rounded-lg shadow-lg hover:bg-blue-50 dark:hover:bg-zinc-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors transform translate-y-2 group-hover:translate-y-0 duration-200 delay-75"
                           title="Open in New Tab"
                         >
                           <ExternalLink size={20} />
@@ -144,11 +144,11 @@ export default function YouTubeThumbnailDownloader() {
             })}
           </div>
         ) : (
-          <div className="text-center py-12 border-2 border-dashed border-slate-100 dark:border-slate-700 rounded-xl bg-slate-50/50 dark:bg-slate-800/50">
-            <div className="bg-slate-100 dark:bg-slate-700 p-4 rounded-full inline-flex mb-4">
-              <ImageIcon className="w-8 h-8 text-slate-300 dark:text-slate-500" />
+          <div className="text-center py-12 border-2 border-dashed border-zinc-100 dark:border-zinc-800 rounded-xl bg-zinc-50/50 dark:bg-zinc-900/50">
+            <div className="bg-zinc-100 dark:bg-zinc-800 p-4 rounded-full inline-flex mb-4">
+              <ImageIcon className="w-8 h-8 text-zinc-300 dark:text-zinc-500" />
             </div>
-            <p className="text-slate-500 dark:text-slate-400 text-sm">Enter a YouTube URL to view thumbnails</p>
+            <p className="text-zinc-500 dark:text-zinc-400 text-sm">Enter a YouTube URL to view thumbnails</p>
           </div>
         )}
       </div>

@@ -119,23 +119,23 @@ export default function ColorShadesGenerator() {
   return (
     <div className="w-full max-w-5xl space-y-8">
       <div className="text-center space-y-2">
-        <h1 className="text-2xl font-semibold text-slate-900 dark:text-white tracking-tight">
+        <h1 className="text-2xl font-semibold text-zinc-900 dark:text-white tracking-tight">
           Color Shades Generator
         </h1>
-        <p className="text-slate-500 dark:text-slate-400 text-sm">
+        <p className="text-zinc-500 dark:text-zinc-400 text-sm">
           Generate tints and shades from a single base color
         </p>
       </div>
 
-      <div className="bg-white dark:bg-slate-800 shadow-sm border border-slate-200 dark:border-slate-700 rounded-xl p-6 sm:p-8 space-y-8">
+      <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-6 sm:p-8 space-y-8 shadow-sm">
         
         {/* Controls */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-end">
           {/* Color Input */}
           <div className="space-y-2">
-            <label className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">Base Color</label>
+            <label className="text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wide">Base Color</label>
             <div className="flex items-center gap-2">
-              <div className="relative w-10 h-10 rounded-lg overflow-hidden border border-slate-200 dark:border-slate-600 shadow-sm flex-shrink-0">
+              <div className="relative w-10 h-10 rounded-lg overflow-hidden border border-zinc-200 dark:border-zinc-700 shadow-sm flex-shrink-0">
                 <input
                   type="color"
                   value={colord(baseColor).isValid() ? colord(baseColor).toHex() : '#000000'}
@@ -147,7 +147,7 @@ export default function ColorShadesGenerator() {
                 type="text"
                 value={baseColor}
                 onChange={handleHexInput}
-                className="w-full px-3 py-2 text-sm border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 font-mono uppercase"
+                className="w-full px-3 py-2 text-sm border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 font-mono uppercase"
                 placeholder="#3B82F6"
               />
             </div>
@@ -156,8 +156,8 @@ export default function ColorShadesGenerator() {
           {/* Step Slider */}
           <div className="space-y-2 lg:col-span-2">
             <div className="flex justify-between">
-              <label className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">Darken/Lighten Step</label>
-              <span className="text-xs font-mono text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-700 px-2 py-0.5 rounded">{step}%</span>
+              <label className="text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wide">Darken/Lighten Step</label>
+              <span className="text-xs font-mono text-zinc-600 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-800 px-2 py-0.5 rounded">{step}%</span>
             </div>
             <input
               type="range"
@@ -165,15 +165,15 @@ export default function ColorShadesGenerator() {
               max="20"
               value={step}
               onChange={(e) => setStep(parseInt(e.target.value))}
-              className="w-full h-2 bg-slate-100 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-blue-600"
+              className="w-full h-2 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-blue-600"
             />
           </div>
 
           {/* Count Slider */}
           <div className="space-y-2">
             <div className="flex justify-between">
-              <label className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">Count</label>
-              <span className="text-xs font-mono text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-700 px-2 py-0.5 rounded">{count}</span>
+              <label className="text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wide">Count</label>
+              <span className="text-xs font-mono text-zinc-600 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-800 px-2 py-0.5 rounded">{count}</span>
             </div>
             <input
               type="range"
@@ -182,14 +182,14 @@ export default function ColorShadesGenerator() {
               step="2" // Keep it odd to have a center
               value={count}
               onChange={(e) => setCount(parseInt(e.target.value))}
-              className="w-full h-2 bg-slate-100 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-blue-600"
+              className="w-full h-2 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-blue-600"
             />
           </div>
         </div>
 
         {/* Shades Display */}
         <div className="space-y-6">
-          <div className="flex flex-col sm:flex-row h-auto sm:h-32 rounded-xl overflow-hidden shadow-sm border border-slate-200 dark:border-slate-700 divide-y sm:divide-y-0 sm:divide-x divide-slate-200/50 dark:divide-slate-700/50">
+          <div className="flex flex-col sm:flex-row h-auto sm:h-32 rounded-xl overflow-hidden shadow-sm border border-zinc-200 dark:border-zinc-800 divide-y sm:divide-y-0 sm:divide-x divide-zinc-200/50 dark:divide-zinc-800/50">
             {shades.map((color, index) => {
               const isBase = color.toLowerCase() === colord(baseColor).toHex().toLowerCase();
               const isDark = colord(color).isDark();
@@ -207,7 +207,7 @@ export default function ColorShadesGenerator() {
                     </div>
                   )}
                   
-                  <div className={`flex flex-col items-center gap-1 transition-transform group-hover:scale-110 ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                  <div className={`flex flex-col items-center gap-1 transition-transform group-hover:scale-110 ${isDark ? 'text-white' : 'text-zinc-900'}`}>
                     <span className="font-mono text-[10px] sm:text-xs font-medium uppercase tracking-wider">{color}</span>
                     {copiedIndex === index && (
                       <motion.div
@@ -234,7 +234,7 @@ export default function ColorShadesGenerator() {
             </button>
             <button
               onClick={handleDownloadSVG}
-              className="flex items-center gap-2 px-6 py-2.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-lg font-medium shadow-sm transition-all hover:shadow-md active:scale-95 text-sm"
+              className="flex items-center gap-2 px-6 py-2.5 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-700 dark:text-zinc-300 rounded-lg font-medium shadow-sm transition-all hover:shadow-md active:scale-95 text-sm"
             >
               <Download size={18} />
               Download SVG
@@ -244,55 +244,55 @@ export default function ColorShadesGenerator() {
 
         {/* Selected Color Details */}
         {selectedColor && (
-          <div className="border-t border-slate-100 dark:border-slate-700 pt-8">
+          <div className="border-t border-zinc-100 dark:border-zinc-800 pt-8">
             <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
               <div 
-                className="w-32 h-32 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 flex-shrink-0"
+                className="w-32 h-32 rounded-2xl shadow-sm border border-zinc-200 dark:border-zinc-800 flex-shrink-0"
                 style={{ backgroundColor: selectedColor }}
               />
               <div className="flex-1 space-y-4 w-full">
-                <h3 className="text-lg font-medium text-slate-900 dark:text-white">Selected Color Details</h3>
+                <h3 className="text-lg font-medium text-zinc-900 dark:text-white">Selected Color Details</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="p-4 bg-slate-50 dark:bg-slate-700/50 rounded-xl border border-slate-100 dark:border-slate-700 space-y-1">
-                    <span className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wide">HEX</span>
+                  <div className="p-4 bg-zinc-50 dark:bg-zinc-800/50 rounded-xl border border-zinc-100 dark:border-zinc-800 space-y-1">
+                    <span className="text-xs text-zinc-500 dark:text-zinc-400 uppercase tracking-wide">HEX</span>
                     <div className="flex items-center justify-between">
-                      <span className="font-mono text-slate-900 dark:text-white font-medium">{colord(selectedColor).toHex()}</span>
+                      <span className="font-mono text-zinc-900 dark:text-white font-medium">{colord(selectedColor).toHex()}</span>
                       <button 
                         onClick={() => handleCopy(colord(selectedColor).toHex(), -1)}
-                        className="text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                        className="text-zinc-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                       >
                         <Copy size={14} />
                       </button>
                     </div>
                   </div>
-                  <div className="p-4 bg-slate-50 dark:bg-slate-700/50 rounded-xl border border-slate-100 dark:border-slate-700 space-y-1">
-                    <span className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wide">RGB</span>
+                  <div className="p-4 bg-zinc-50 dark:bg-zinc-800/50 rounded-xl border border-zinc-100 dark:border-zinc-800 space-y-1">
+                    <span className="text-xs text-zinc-500 dark:text-zinc-400 uppercase tracking-wide">RGB</span>
                     <div className="flex items-center justify-between">
-                      <span className="font-mono text-slate-900 dark:text-white font-medium">{colord(selectedColor).toRgbString()}</span>
+                      <span className="font-mono text-zinc-900 dark:text-white font-medium">{colord(selectedColor).toRgbString()}</span>
                       <button 
                         onClick={() => handleCopy(colord(selectedColor).toRgbString(), -1)}
-                        className="text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                        className="text-zinc-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                       >
                         <Copy size={14} />
                       </button>
                     </div>
                   </div>
-                  <div className="p-4 bg-slate-50 dark:bg-slate-700/50 rounded-xl border border-slate-100 dark:border-slate-700 space-y-1">
-                    <span className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wide">HSL</span>
+                  <div className="p-4 bg-zinc-50 dark:bg-zinc-800/50 rounded-xl border border-zinc-100 dark:border-zinc-800 space-y-1">
+                    <span className="text-xs text-zinc-500 dark:text-zinc-400 uppercase tracking-wide">HSL</span>
                     <div className="flex items-center justify-between">
-                      <span className="font-mono text-slate-900 dark:text-white font-medium">{colord(selectedColor).toHslString()}</span>
+                      <span className="font-mono text-zinc-900 dark:text-white font-medium">{colord(selectedColor).toHslString()}</span>
                       <button 
                         onClick={() => handleCopy(colord(selectedColor).toHslString(), -1)}
-                        className="text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                        className="text-zinc-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                       >
                         <Copy size={14} />
                       </button>
                     </div>
                   </div>
-                  <div className="p-4 bg-slate-50 dark:bg-slate-700/50 rounded-xl border border-slate-100 dark:border-slate-700 space-y-1">
-                    <span className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wide">Name</span>
+                  <div className="p-4 bg-zinc-50 dark:bg-zinc-800/50 rounded-xl border border-zinc-100 dark:border-zinc-800 space-y-1">
+                    <span className="text-xs text-zinc-500 dark:text-zinc-400 uppercase tracking-wide">Name</span>
                     <div className="flex items-center justify-between">
-                      <span className="font-mono text-slate-900 dark:text-white font-medium capitalize">{colord(selectedColor).toName({ closest: true }) || 'Unknown'}</span>
+                      <span className="font-mono text-zinc-900 dark:text-white font-medium capitalize">{colord(selectedColor).toName({ closest: true }) || 'Unknown'}</span>
                     </div>
                   </div>
                 </div>

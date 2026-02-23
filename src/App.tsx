@@ -73,9 +73,9 @@ const Home = () => {
           <div className="bg-blue-600 p-2 rounded-lg">
             <Logo className="text-white w-6 h-6" />
           </div>
-          <h1 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white">Utility Hub</h1>
+          <h1 className="text-2xl md:text-3xl font-bold text-zinc-900 dark:text-white">Utility Hub</h1>
         </div>
-        <p className="text-slate-500 dark:text-slate-400 max-w-2xl text-sm md:text-base">
+        <p className="text-zinc-500 dark:text-zinc-400 max-w-2xl text-sm md:text-base">
           A collection of simple, powerful tools to help with your daily tasks.
           Select a utility below to get started.
         </p>
@@ -83,13 +83,13 @@ const Home = () => {
 
       {/* Search Bar */}
       <div className="relative max-w-md">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 w-5 h-5" />
         <input
           type="text"
           placeholder="Search utilities..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full pl-10 pr-4 py-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 transition-all text-slate-900 dark:text-white placeholder:text-slate-400"
+          className="w-full pl-10 pr-4 py-3 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 transition-all text-zinc-900 dark:text-white placeholder:text-zinc-400"
         />
       </div>
 
@@ -101,21 +101,21 @@ const Home = () => {
             <Link 
               key={util.id} 
               to={util.path}
-              className="group bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 hover:shadow-md hover:border-blue-200 dark:hover:border-blue-500/30 transition-all duration-200 flex flex-col h-full"
+              className="group bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl p-6 hover:shadow-md hover:border-blue-200 dark:hover:border-blue-500/30 transition-all duration-200 flex flex-col h-full"
             >
               <div className="flex items-start justify-between mb-4">
                 <div className={`p-3 rounded-xl ${util.color} group-hover:scale-110 transition-transform duration-200`}>
                   <Icon size={24} />
                 </div>
-                <div className="text-slate-300 dark:text-slate-600 group-hover:text-blue-500 transition-colors">
+                <div className="text-zinc-300 dark:text-zinc-600 group-hover:text-blue-500 transition-colors">
                   <ArrowRight size={20} />
                 </div>
               </div>
               
-              <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2 group-hover:text-blue-700 dark:group-hover:text-blue-400 transition-colors">
+              <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2 group-hover:text-blue-700 dark:group-hover:text-blue-400 transition-colors">
                 {util.title}
               </h3>
-              <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
+              <p className="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed">
                 {util.description}
               </p>
             </Link>
@@ -123,7 +123,7 @@ const Home = () => {
         })}
 
         {filteredUtilities.length === 0 && (
-          <div className="col-span-full text-center py-12 text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-dashed border-slate-200 dark:border-slate-700">
+          <div className="col-span-full text-center py-12 text-zinc-500 dark:text-zinc-400 bg-zinc-50 dark:bg-zinc-900/50 rounded-2xl border border-dashed border-zinc-200 dark:border-zinc-800">
             <p>No utilities found matching "{searchTerm}"</p>
           </div>
         )}
@@ -138,18 +138,18 @@ export default function App() {
 
   return (
     <ThemeProvider>
-      <div className="flex min-h-screen bg-slate-50 dark:bg-slate-900 font-sans text-slate-900 dark:text-white transition-colors duration-300">
+      <div className="flex min-h-screen bg-zinc-50 dark:bg-zinc-950 font-sans text-zinc-900 dark:text-white transition-colors duration-300">
         {/* Mobile Header */}
-        <div className="md:hidden fixed top-0 left-0 right-0 h-16 bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 z-40 flex items-center justify-between px-4">
+        <div className="md:hidden fixed top-0 left-0 right-0 h-16 bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800 z-40 flex items-center justify-between px-4">
           <div className="flex items-center gap-3">
             <div className="bg-blue-600 p-2 rounded-lg">
               <Logo className="text-white w-5 h-5" />
             </div>
-            <span className="font-semibold text-slate-800 dark:text-white text-lg">Utility Hub</span>
+            <span className="font-semibold text-zinc-800 dark:text-white text-lg">Utility Hub</span>
           </div>
           <button 
             onClick={() => setIsMobileMenuOpen(true)} 
-            className="p-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 rounded-lg"
+            className="p-2 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800 rounded-lg"
           >
             <Menu size={24} />
           </button>
