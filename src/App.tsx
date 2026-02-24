@@ -27,7 +27,7 @@ const utilities = [
   {
     id: 'image-to-video',
     title: 'Image to Video',
-    description: 'Convert static images into 2-second MP4 videos instantly.',
+    description: 'Convert static images into 5-second MP4 videos instantly.',
     path: '/image-to-video',
     icon: Video,
     color: 'bg-indigo-50 text-indigo-600 dark:bg-indigo-900/20 dark:text-indigo-400',

@@ -15,7 +15,7 @@ A tool to help content creators and developers ensure their text fits within spe
 - Custom limit support
 
 ### 2. Image to Video Converter
-Convert static images into 2-second MP4 videos.
+Convert static images into 5-second MP4 videos.
 - Supports JPG, PNG, WEBP, GIF
 - Client-side processing (privacy focused)
 - Maintains original resolution

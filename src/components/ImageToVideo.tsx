@@ -126,7 +126,7 @@ export default function ImageToVideo() {
 
       // Animation loop to keep the stream active (even if static)
       let startTime = Date.now();
-      const duration = 2000; // 2 seconds
+      const duration = 5000; // 5 seconds
 
       const animate = () => {
         const elapsed = Date.now() - startTime;
@@ -173,7 +173,7 @@ export default function ImageToVideo() {
           Image to Video Converter
         </h1>
         <p className="text-zinc-500 dark:text-zinc-400 text-sm">
-          Convert any image to a 2-second MP4 video
+          Convert any image to a 5-second MP4 video
         </p>
       </div>
 
