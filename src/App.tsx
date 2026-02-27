@@ -5,7 +5,7 @@
 
 import { useState } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
-import { Type, Video, Search, ArrowRight, QrCode, Palette, Image as ImageIcon, Menu } from 'lucide-react';
+import { Type, Video, Search, ArrowRight, QrCode, Palette, Image as ImageIcon, Menu, Layers } from 'lucide-react';
 import Sidebar from './components/Sidebar';
 import CharacterLimitCheck from './components/CharacterLimitCheck';
 import ImageToVideo from './components/ImageToVideo';
@@ -14,8 +14,18 @@ import ColorShadesGenerator from './components/ColorShadesGenerator';
 import YouTubeThumbnailDownloader from './components/YouTubeThumbnailDownloader';
 import { Logo } from './components/Logo';
 import { ThemeProvider } from './context/ThemeContext';
+import Footer from './components/Footer';
 
 const utilities = [
+  {
+    id: 'studio-website',
+    title: 'Studio Website',
+    description: 'Full portfolio, case studies, services, and contact.',
+    path: 'https://joyalsiby.com',
+    external: true,
+    icon: Layers,
+    color: 'bg-purple-50 text-purple-600 dark:bg-purple-900/20 dark:text-purple-400',
+  },
   {
     id: 'character-limit',
     title: 'Character Limit Check',
@@ -97,6 +107,33 @@ const Home = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredUtilities.map((util) => {
           const Icon = util.icon;
+          if (util.external) {
+            return (
+              <a 
+                key={util.id} 
+                href={util.path}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl p-6 hover:shadow-md hover:border-purple-200 dark:hover:border-purple-500/30 transition-all duration-200 flex flex-col h-full"
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <div className={`p-3 rounded-xl ${util.color} group-hover:scale-110 transition-transform duration-200`}>
+                    <Icon size={24} />
+                  </div>
+                  <div className="text-zinc-300 dark:text-zinc-600 group-hover:text-purple-500 transition-colors">
+                    <ArrowRight size={20} />
+                  </div>
+                </div>
+                
+                <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2 group-hover:text-purple-700 dark:group-hover:text-purple-400 transition-colors">
+                  {util.title}
+                </h3>
+                <p className="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed">
+                  {util.description}
+                </p>
+              </a>
+            )
+          }
           return (
             <Link 
               key={util.id} 
@@ -165,37 +202,39 @@ export default function App() {
         <main 
           className={`flex-1 p-4 md:p-8 overflow-y-auto h-screen pt-20 md:pt-8 transition-all duration-300 ${
             isSidebarCollapsed ? 'md:ml-20' : 'md:ml-64'
-          }`}
-        >
-          <div className="max-w-5xl mx-auto h-full">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/character-limit" element={
-                <div className="flex justify-center pt-4 md:pt-12">
-                  <CharacterLimitCheck />
-                </div>
-              } />
-              <Route path="/image-to-video" element={
-                <div className="flex justify-center pt-4 md:pt-12">
-                  <ImageToVideo />
-                </div>
-              } />
-              <Route path="/qr-generator" element={
-                <div className="flex justify-center pt-4 md:pt-12">
-                  <QRCodeGenerator />
-                </div>
-              } />
-              <Route path="/color-shades" element={
-                <div className="flex justify-center pt-4 md:pt-12">
-                  <ColorShadesGenerator />
-                </div>
-              } />
-              <Route path="/youtube-thumbnail" element={
-                <div className="flex justify-center pt-4 md:pt-12">
-                  <YouTubeThumbnailDownloader />
-                </div>
-              } />
-            </Routes>
+          }`}>
+          <div className="max-w-5xl mx-auto h-full flex flex-col">
+            <div className="flex-grow">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/character-limit" element={
+                  <div className="flex justify-center pt-4 md:pt-12">
+                    <CharacterLimitCheck />
+                  </div>
+                } />
+                <Route path="/image-to-video" element={
+                  <div className="flex justify-center pt-4 md:pt-12">
+                    <ImageToVideo />
+                  </div>
+                } />
+                <Route path="/qr-generator" element={
+                  <div className="flex justify-center pt-4 md:pt-12">
+                    <QRCodeGenerator />
+                  </div>
+                } />
+                <Route path="/color-shades" element={
+                  <div className="flex justify-center pt-4 md:pt-12">
+                    <ColorShadesGenerator />
+                  </div>
+                } />
+                <Route path="/youtube-thumbnail" element={
+                  <div className="flex justify-center pt-4 md:pt-12">
+                    <YouTubeThumbnailDownloader />
+                  </div>
+                } />
+              </Routes>
+            </div>
+            <Footer />
           </div>
         </main>
       </div>
